@@ -1,17 +1,19 @@
 
-import pandas, random
+import pandas
 
-# WARNING THIS TAKES LIKE 2 MINS OR MORE TO RUN
-
-
-"""Load in the California housing dataset. Originally downloaded from https://github.com/ageron/handson-ml/tree/master/datasets/housing"""
+# CREATING 57 BUCKETS FOR LAT LONG COMBINED
 
 housing = pandas.read_csv('../data/housing.csv')
 
+
+# **********************************************
+# Jon the code can be copied and pasted from here
+
+
 lat_long_pts = []
 
+# Get all of the unique lat long pairs
 for index, row in housing.iterrows():
-    colors = (0, 0, 0)
     found = False
     for i in lat_long_pts:
         if (round(row['latitude'], 0) == i[0]) and (round(row['longitude'], 0) == i[1]):
@@ -32,6 +34,9 @@ for k in lat_long_pts:
 # Remove the lat and long columns
 housing.drop(columns=['longitude'], inplace=True)
 housing.drop(columns=['latitude'], inplace=True)
+
+# To here!
+# *********************************
 
 housing.to_csv("new_housing.csv", sep='\t')
 
