@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 """Load in the California housing dataset. Originally downloaded from https://github.com/ageron/handson-ml/tree/master/datasets/housing"""
 
-housing = pandas.read_csv('./data/housing.csv')
+housing = pandas.read_csv('../data/housing.csv')
 
 
 long_buckets = []
@@ -28,8 +28,6 @@ for i in housing.longitude:
             long_buckets.append([i,1])
     else:
         long_buckets.append([i,1])
-print(long_buckets)
-print(len(long_buckets))
 
 lat_buckets = []
 
@@ -47,5 +45,18 @@ for i in housing.latitude:
             lat_buckets.append([i,1])
     else:
         lat_buckets.append([i,1])
-print(lat_buckets)
-print(len(lat_buckets))
+
+
+for k in long_buckets:
+    # name of the bucket
+    housing['long_' + str(k[0])] = [1 if round(i,0)==k[0] else 0 for i in housing.longitude]
+
+
+for k in lat_buckets:
+    # name of the bucket
+    housing['lat_' + str(k[0])] = [1 if round(i,0)==k[0] else 0 for i in housing.latitude]
+
+housing.drop(columns=['latitude'], inplace=True)
+
+housing.to_csv("new_housing.csv", sep='\t')
+
