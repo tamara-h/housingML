@@ -5,6 +5,11 @@ import pandas
 
 housing = pandas.read_csv('../data/housing.csv')
 
+
+# **********************************************
+# Jon the code can be copied and pasted from here
+
+
 lat_long_pts = []
 
 # Get all of the unique lat long pairs
@@ -30,7 +35,8 @@ for k in lat_long_pts:
 housing.drop(columns=['longitude'], inplace=True)
 housing.drop(columns=['latitude'], inplace=True)
 
-
+# To here!
+# *********************************
 
 housing.to_csv("new_housing.csv", sep='\t')
 
